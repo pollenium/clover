@@ -73,7 +73,7 @@ var ContractDeployer = /** @class */ (function () {
                         ethersContract = _b.sent();
                         return [2 /*return*/, {
                                 address: new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersContract.address)),
-                                transactionHash: new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(ethersContract.transactionHash))
+                                transactionHash: new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(ethersContract.deployTransaction.hash))
                             }];
                 }
             });
