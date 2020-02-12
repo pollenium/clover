@@ -20,7 +20,7 @@ export interface ContractWriterStruct {
     abiJson: string;
     address: Uish;
 }
-export interface ContractChildWriterStruct {
+export interface ContractWriterChildStruct {
     signer: ethers.Signer;
     abiJson?: string;
     address: Uish;
