@@ -10,15 +10,30 @@ export interface ContractReaderStruct {
     abiJson: string;
     address: Uish;
 }
+export interface ContractReaderChildStruct {
+    provider: ethers.providers.Provider;
+    abiJson?: string;
+    address: Uish;
+}
 export interface ContractWriterStruct {
     signer: ethers.Signer;
     abiJson: string;
+    address: Uish;
+}
+export interface ContractChildWriterStruct {
+    signer: ethers.Signer;
+    abiJson?: string;
     address: Uish;
 }
 export interface ContractDeployerStruct {
     signer: ethers.Signer;
     abiJson: string;
     bytecode: Uish;
+}
+export interface ContractDeployerChildStruct {
+    signer: ethers.Signer;
+    abiJson?: string;
+    bytecode?: Uish;
 }
 export interface DeployedStruct {
     transactionHash: Bytes32;
