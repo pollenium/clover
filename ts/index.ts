@@ -84,7 +84,7 @@ export class ContractDeployer<DeployStruct> {
     const ethersContract = await this.ethersContractFactory.deploy(...params)
     return {
       address: new Address(Uu.fromHexish(ethersContract.address)),
-      transactionHash: new Bytes32(Uu.fromHexish(ethersContract.transactionHash))
+      transactionHash: new Bytes32(Uu.fromHexish(ethersContract.deployTransaction.hash))
     }
   }
 
