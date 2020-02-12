@@ -25,24 +25,20 @@ export interface ContractWriterChildStruct {
     abiJson?: string;
     address: Uish;
 }
-export declare type DeployFunction<DeployStruct> = (contractDeployer: ContractDeployer<DeployStruct>, struct: DeployStruct) => DeployPrivateReturnStruct;
+export declare type DeployTransformer<DeployStruct> = (struct: DeployStruct) => Array<any>;
 export interface ContractDeployerStruct<DeployStruct> {
     signer: ethers.Signer;
     abiJson: string;
     bytecode: Uish;
-    deploy: DeployFunction<DeployStruct>;
+    deployTransformer?: DeployTransformer<DeployStruct>;
 }
 export interface ContractDeployerChildStruct<DeployStruct> {
     signer: ethers.Signer;
     abiJson?: string;
     bytecode?: Uish;
-    deploy?: DeployFunction<DeployStruct>;
+    deployTransformer?: DeployTransformer<DeployStruct>;
 }
-export interface DeployPrivateReturnStruct {
-    transactionHash: Uish;
-    address: Uish;
-}
-export interface DeployPublicReturnStruct {
+export interface DeployReturnStruct {
     transactionHash: Bytes32;
     address: Address;
 }
@@ -59,6 +55,6 @@ export declare class ContractWriter {
 export declare abstract class ContractDeployer<DeployStruct> {
     readonly struct: ContractDeployerStruct<DeployStruct>;
     readonly ethersContractFactory: ethers.ContractFactory;
-    deploy(struct: DeployStruct): Promise<DeployPublicReturnStruct>;
+    deploy(struct: DeployStruct): Promise<DeployReturnStruct>;
     constructor(struct: ContractDeployerStruct<DeployStruct>);
 }

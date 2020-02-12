@@ -62,15 +62,18 @@ var ContractDeployer = /** @class */ (function () {
     }
     ContractDeployer.prototype.deploy = function (struct) {
         return __awaiter(this, void 0, void 0, function () {
-            var deployPrivateReturnStruct;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.struct.deploy(this, struct)];
+            var params, ethersContract;
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        params = this.struct.deployTransformer ? this.struct.deployTransformer(struct) : [];
+                        return [4 /*yield*/, (_a = this.ethersContractFactory).deploy.apply(_a, params)];
                     case 1:
-                        deployPrivateReturnStruct = _a.sent();
+                        ethersContract = _b.sent();
                         return [2 /*return*/, {
-                                address: new pollenium_buttercup_1.Address(deployPrivateReturnStruct.address),
-                                transactionHash: new pollenium_buttercup_1.Bytes32(deployPrivateReturnStruct.transactionHash)
+                                address: new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersContract.address)),
+                                transactionHash: new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(ethersContract.transactionHash))
                             }];
                 }
             });

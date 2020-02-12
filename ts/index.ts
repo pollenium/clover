@@ -31,29 +31,24 @@ export interface ContractWriterChildStruct {
   address: Uish
 }
 
-export type DeployFunction<DeployStruct> = (contractDeployer: ContractDeployer<DeployStruct>, struct: DeployStruct) => DeployPrivateReturnStruct
+export type DeployTransformer<DeployStruct> = (struct: DeployStruct) => Array<any>
 
 export interface ContractDeployerStruct<DeployStruct> {
   signer: ethers.Signer,
   abiJson: string,
   bytecode: Uish,
-  deploy: DeployFunction<DeployStruct>
+  deployTransformer?: DeployTransformer<DeployStruct>
 }
 
 export interface ContractDeployerChildStruct<DeployStruct> {
   signer: ethers.Signer,
   abiJson?: string,
   bytecode?: Uish,
-  deploy?: DeployFunction<DeployStruct>
+  deployTransformer?: DeployTransformer<DeployStruct>
 }
 
 
-export interface DeployPrivateReturnStruct {
-  transactionHash: Uish,
-  address: Uish
-}
-
-export interface DeployPublicReturnStruct {
+export interface DeployReturnStruct {
   transactionHash: Bytes32,
   address: Address
 }
@@ -84,11 +79,12 @@ export class ContractWriter {
 export abstract class ContractDeployer<DeployStruct> {
   readonly ethersContractFactory: ethers.ContractFactory
 
-  async deploy(struct: DeployStruct): Promise<DeployPublicReturnStruct> {
-    const deployPrivateReturnStruct = await this.struct.deploy(this, struct)
+  async deploy(struct: DeployStruct): Promise<DeployReturnStruct> {
+    const params = this.struct.deployTransformer ? this.struct.deployTransformer(struct) : []
+    const ethersContract = await this.ethersContractFactory.deploy(...params)
     return {
-      address: new Address(deployPrivateReturnStruct.address),
-      transactionHash: new Bytes32(deployPrivateReturnStruct.transactionHash)
+      address: new Address(Uu.fromHexish(ethersContract.address)),
+      transactionHash: new Bytes32(Uu.fromHexish(ethersContract.transactionHash))
     }
   }
 
