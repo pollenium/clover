@@ -1,8 +1,9 @@
 import { Address, Bytes32 } from 'pollenium-buttercup';
 import { Uu, Uish } from 'pollenium-uvaursi';
 import { ethers } from 'ethers';
+export declare type Abi = Array<string | ethers.utils.FunctionFragment | ethers.utils.EventFragment | ethers.utils.ParamType> | string | ethers.utils.Interface;
 export interface ContractOutput {
-    abi: ethers.utils.Interface;
+    abi: Abi;
     bytecode: Uu;
 }
 export interface ContractReaderStruct {
