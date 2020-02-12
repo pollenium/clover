@@ -7,17 +7,17 @@ export interface ContractOutput {
 }
 export interface ContractReaderStruct {
     provider: ethers.providers.Provider;
-    abi: ethers.utils.Interface;
+    abiJson: string;
     address: Uish;
 }
 export interface ContractWriterStruct {
     signer: ethers.Signer;
-    abi: ethers.utils.Interface;
+    abiJson: string;
     address: Uish;
 }
 export interface ContractDeployerStruct {
     signer: ethers.Signer;
-    abi: ethers.utils.Interface;
+    abiJson: string;
     bytecode: Uish;
 }
 export interface DeployedStruct {

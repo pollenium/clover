@@ -9,19 +9,19 @@ export interface ContractOutput {
 
 export interface ContractReaderStruct {
   provider: ethers.providers.Provider,
-  abi: ethers.utils.Interface,
+  abiJson: string,
   address: Uish
 }
 
 export interface ContractWriterStruct {
   signer: ethers.Signer,
-  abi: ethers.utils.Interface,
+  abiJson: string,
   address: Uish
 }
 
 export interface ContractDeployerStruct {
   signer: ethers.Signer,
-  abi: ethers.utils.Interface,
+  abiJson: string,
   bytecode: Uish
 }
 
@@ -35,7 +35,7 @@ export class ContractReader {
   constructor(readonly struct: ContractReaderStruct) {
     this.ethersContract = new ethers.Contract(
       new Address(struct.address).uu.toPhex(),
-      struct.abi,
+      struct.abiJson,
       struct.provider
     )
   }
@@ -46,7 +46,7 @@ export class ContractWriter {
   constructor(readonly struct: ContractWriterStruct) {
     this.ethersContract = new ethers.Contract(
       new Address(struct.address).uu.toPhex(),
-      struct.abi,
+      struct.abiJson,
       struct.signer
     )
   }
@@ -57,7 +57,7 @@ export abstract class ContractDeployer {
   abstract deploy(...args: any): Promise<DeployedStruct>;
   constructor(readonly struct: ContractDeployerStruct) {
     this.ethersContractFactory = new ethers.ContractFactory(
-      struct.abi,
+      struct.abiJson,
       Uu.wrap(struct.bytecode).u,
       struct.signer
     )
