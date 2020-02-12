@@ -2,10 +2,8 @@ import { Address, Bytes32, Uint256 } from 'pollenium-buttercup'
 import { Uu, Uish } from 'pollenium-uvaursi'
 import { ethers } from 'ethers'
 
-export type Abi = Array<string | ethers.utils.FunctionFragment | ethers.utils.EventFragment | ethers.utils.ParamType> | string | ethers.utils.Interface
-
 export interface ContractOutput {
-  abi: Abi,
+  abiJson: string,
   bytecode: Uu
 }
 
@@ -26,11 +24,6 @@ export interface ContractDeployerStruct {
   abi: ethers.utils.Interface,
   bytecode: Uish
 }
-
-export interface ContractDeployerChildStruct extends Omit<ContractDeployerStruct, 'bytecode'> {
-  bytecode?: Uish
-}
-
 
 export interface DeployedStruct {
   transactionHash: Bytes32,
