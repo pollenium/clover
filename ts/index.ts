@@ -76,7 +76,7 @@ export class ContractWriter {
   }
 }
 
-export abstract class ContractDeployer<DeployStruct> {
+export class ContractDeployer<DeployStruct> {
   readonly ethersContractFactory: ethers.ContractFactory
 
   async deploy(struct: DeployStruct): Promise<DeployReturnStruct> {

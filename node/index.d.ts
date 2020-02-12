@@ -52,7 +52,7 @@ export declare class ContractWriter {
     readonly ethersContract: any;
     constructor(struct: ContractWriterStruct);
 }
-export declare abstract class ContractDeployer<DeployStruct> {
+export declare class ContractDeployer<DeployStruct> {
     readonly struct: ContractDeployerStruct<DeployStruct>;
     readonly ethersContractFactory: ethers.ContractFactory;
     deploy(struct: DeployStruct): Promise<DeployReturnStruct>;
