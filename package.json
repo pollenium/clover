@@ -4,7 +4,7 @@
   "description": "",
   "main": "node/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "tsc": "tsc"
   },
   "repository": {
@@ -18,12 +18,20 @@
   },
   "homepage": "https://github.com/pollenium/clover#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.3",
+    "jest": "^26.1.0",
+    "pollenium-gaillardia": "^4.2.0",
+    "pollenium-ilex": "^9.3.1",
+    "solc": "^0.6.10",
+    "ts-jest": "^26.1.1",
     "tsc": "^1.20150623.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "delay": "^4.3.0",
     "ethers": "^4.0.44",
-    "pollenium-buttercup": "^19.2.0",
-    "pollenium-uvaursi": "^8.5.0"
+    "pollenium-buttercup": "^19.6.1",
+    "pollenium-primrose": "^3.0.0",
+    "pollenium-uvaursi": "^8.11.0"
   }
 }

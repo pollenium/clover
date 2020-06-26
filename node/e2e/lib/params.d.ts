@@ -1,0 +1,11 @@
+import { Uint256 } from 'pollenium-buttercup';
+import { User } from './User';
+import { Gaillardia } from 'pollenium-gaillardia';
+export declare const blockTimeSeconds = 3;
+export declare const startWei: Uint256;
+export declare const admin: User;
+export declare const deployer: User;
+export declare const alice: User;
+export declare const bob: User;
+export declare const allUsers: User[];
+export declare const gaillardia: Gaillardia;
