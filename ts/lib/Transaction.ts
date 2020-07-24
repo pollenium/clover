@@ -7,7 +7,7 @@ export interface TransactionStruct {
   blockNumber: Uintable,
   timestamp: Uintable,
   data: Uish,
-  to: Uish,
+  to: Uish | null,
   from: Uish,
   gasLimit: Uintable,
   gasPrice: Uintable,
@@ -21,7 +21,7 @@ export class Transaction {
   readonly blockNumber: Uint256
   readonly timestamp: Uint256
   readonly data: Uint256
-  readonly to: Address
+  readonly to: Address | null
   readonly from: Address
   readonly gasLimit: Uint256
   readonly gasPrice: Uint256
@@ -51,9 +51,9 @@ export class Transaction {
     )
 
     const data = Uu.fromHexish(ethersTransaction.data)
-    const to = new Address(Uu.fromHexish(
+    const to = ethersTransaction.to ? new Address(Uu.fromHexish(
       ethersTransaction.to
-    ))
+    )) : null
     const from = new Address(Uu.fromHexish(
       ethersTransaction.from
     ))

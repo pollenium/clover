@@ -63,7 +63,7 @@ var Transaction = /** @class */ (function () {
                     case 1:
                         ethersTransaction = _a.sent();
                         data = pollenium_uvaursi_1.Uu.fromHexish(ethersTransaction.data);
-                        to = new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersTransaction.to));
+                        to = ethersTransaction.to ? new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersTransaction.to)) : null;
                         from = new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersTransaction.from));
                         gasLimit = new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(ethers_1.ethers.utils.hexlify(ethersTransaction.gasLimit)));
                         gasPrice = new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(ethers_1.ethers.utils.hexlify(ethersTransaction.gasLimit)));
