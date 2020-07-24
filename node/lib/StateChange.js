@@ -65,6 +65,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var pollenium_buttercup_1 = require("pollenium-buttercup");
 var pollenium_primrose_1 = require("pollenium-primrose");
+var Transaction_1 = require("./Transaction");
 var delay_1 = __importDefault(require("delay"));
 var StateChangeTimeoutError = /** @class */ (function (_super) {
     __extends(StateChangeTimeoutError, _super);
@@ -111,6 +112,16 @@ var StateChange = /** @class */ (function () {
                     donePrimrose.reject(stateChangeTimeoutError);
                 });
                 return [2 /*return*/, donePrimrose.promise];
+            });
+        });
+    };
+    StateChange.prototype.fetchTransaction = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, Transaction_1.Transaction.fetch({
+                        provider: this.provider,
+                        hash: this.transactionHash
+                    })];
             });
         });
     };

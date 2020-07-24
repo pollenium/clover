@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import { Uish } from 'pollenium-uvaursi';
 import { Bytes32 } from 'pollenium-buttercup';
+import { Transaction } from './Transaction';
 export interface StateChangeAwaitConfirmationsStruct {
     confirmations: number;
     timeoutSeconds: number;
@@ -20,4 +21,5 @@ export declare class StateChange {
     readonly transactionHash: Bytes32;
     constructor(struct: StateChangeStruct);
     awaitConfirmations(struct: StateChangeAwaitConfirmationsStruct): Promise<void>;
+    fetchTransaction(): Promise<Transaction>;
 }

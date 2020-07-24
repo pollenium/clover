@@ -2,6 +2,7 @@ import { ethers } from 'ethers'
 import { Uish } from 'pollenium-uvaursi'
 import { Bytes32 } from 'pollenium-buttercup'
 import { Primrose } from 'pollenium-primrose'
+import { Transaction } from './Transaction'
 import delay from 'delay'
 
 export interface StateChangeAwaitConfirmationsStruct {
@@ -61,6 +62,13 @@ export class StateChange {
 
 
     return donePrimrose.promise
+  }
+
+  async fetchTransaction(): Promise<Transaction> {
+    return Transaction.fetch({
+      provider: this.provider,
+      hash: this.transactionHash
+    })
   }
 
 }
