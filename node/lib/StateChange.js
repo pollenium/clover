@@ -125,6 +125,20 @@ var StateChange = /** @class */ (function () {
             });
         });
     };
+    StateChange.prototype.logGasLimit = function (identifier) {
+        return __awaiter(this, void 0, void 0, function () {
+            var transaction;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.fetchTransaction()];
+                    case 1:
+                        transaction = _a.sent();
+                        console.log("[" + identifier + "]: " + transaction.gasLimit.toNumberString(10));
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return StateChange;
 }());
 exports.StateChange = StateChange;

@@ -22,4 +22,5 @@ export declare class StateChange {
     constructor(struct: StateChangeStruct);
     awaitConfirmations(struct: StateChangeAwaitConfirmationsStruct): Promise<void>;
     fetchTransaction(): Promise<Transaction>;
+    logGasLimit(identifier: string): Promise<void>;
 }

@@ -71,4 +71,9 @@ export class StateChange {
     })
   }
 
+  async logGasLimit(identifier: string) {
+    const transaction = await this.fetchTransaction()
+    console.log(`[${identifier}]: ${transaction.gasLimit.toNumberString(10)}`)
+  }
+
 }
