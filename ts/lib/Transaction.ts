@@ -57,15 +57,9 @@ export class Transaction {
     const from = new Address(Uu.fromHexish(
       ethersTransaction.from
     ))
-    const gasLimit = new Uint256(Uu.fromHexish(
-      ethers.utils.hexlify(ethersTransaction.gasLimit)
-    ))
-    const gasPrice = new Uint256(Uu.fromHexish(
-      ethers.utils.hexlify(ethersTransaction.gasLimit)
-    ))
-    const value = new Uint256(Uu.fromHexish(
-      ethers.utils.hexlify(ethersTransaction.value)
-    ))
+    const gasLimit = Uint256.fromBignumberish(ethersTransaction.gasLimit)
+    const gasPrice = Uint256.fromBignumberish(ethersTransaction.gasLimit)
+    const value = Uint256.fromBignumberish(ethersTransaction.value)
 
     return new Transaction ({
       blockNumber: ethersTransaction.blockNumber,

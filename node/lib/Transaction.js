@@ -38,7 +38,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var pollenium_buttercup_1 = require("pollenium-buttercup");
 var pollenium_uvaursi_1 = require("pollenium-uvaursi");
-var ethers_1 = require("ethers");
 var Transaction = /** @class */ (function () {
     function Transaction(struct) {
         this.hash = new pollenium_buttercup_1.Bytes32(struct.hash);
@@ -65,9 +64,9 @@ var Transaction = /** @class */ (function () {
                         data = pollenium_uvaursi_1.Uu.fromHexish(ethersTransaction.data);
                         to = ethersTransaction.to ? new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersTransaction.to)) : null;
                         from = new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersTransaction.from));
-                        gasLimit = new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(ethers_1.ethers.utils.hexlify(ethersTransaction.gasLimit)));
-                        gasPrice = new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(ethers_1.ethers.utils.hexlify(ethersTransaction.gasLimit)));
-                        value = new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(ethers_1.ethers.utils.hexlify(ethersTransaction.value)));
+                        gasLimit = pollenium_buttercup_1.Uint256.fromBignumberish(ethersTransaction.gasLimit);
+                        gasPrice = pollenium_buttercup_1.Uint256.fromBignumberish(ethersTransaction.gasLimit);
+                        value = pollenium_buttercup_1.Uint256.fromBignumberish(ethersTransaction.value);
                         return [2 /*return*/, new Transaction({
                                 blockNumber: ethersTransaction.blockNumber,
                                 timestamp: ethersTransaction.timestamp,
