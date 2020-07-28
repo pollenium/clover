@@ -1,6 +1,6 @@
 {
   "name": "pollenium-clover",
-  "version": "7.2.2",
+  "version": "7.2.3",
   "description": "",
   "main": "node/index.js",
   "scripts": {
