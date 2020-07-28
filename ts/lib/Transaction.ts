@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 export interface TransactionStruct {
   hash: Uish,
   blockNumber: Uintable,
-  timestamp: Uintable,
+  timestamp: Uintable | null,
   data: Uish,
   to: Uish | null,
   from: Uish,
@@ -19,7 +19,7 @@ export class Transaction {
 
   readonly hash: Bytes32
   readonly blockNumber: Uint256
-  readonly timestamp: Uint256
+  readonly timestamp: Uint256 | null
   readonly data: Uint256
   readonly to: Address | null
   readonly from: Address
@@ -31,9 +31,9 @@ export class Transaction {
   constructor(struct: TransactionStruct) {
     this.hash = new Bytes32(struct.hash)
     this.blockNumber = new Uint256(struct.blockNumber)
-    this.timestamp = new Uint256(struct.timestamp)
+    this.timestamp = struct.timestamp ? new Uint256(struct.timestamp) : null
     this.data = new Uint256(struct.data)
-    this.to = new Address(struct.to)
+    this.to = struct.to ? new Address(struct.to) : null
     this.from = new Address(struct.from)
     this.gasLimit = new Uint256(struct.gasLimit)
     this.gasPrice = new Uint256(struct.gasPrice)

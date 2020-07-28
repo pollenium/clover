@@ -42,9 +42,9 @@ var Transaction = /** @class */ (function () {
     function Transaction(struct) {
         this.hash = new pollenium_buttercup_1.Bytes32(struct.hash);
         this.blockNumber = new pollenium_buttercup_1.Uint256(struct.blockNumber);
-        this.timestamp = new pollenium_buttercup_1.Uint256(struct.timestamp);
+        this.timestamp = struct.timestamp ? new pollenium_buttercup_1.Uint256(struct.timestamp) : null;
         this.data = new pollenium_buttercup_1.Uint256(struct.data);
-        this.to = new pollenium_buttercup_1.Address(struct.to);
+        this.to = struct.to ? new pollenium_buttercup_1.Address(struct.to) : null;
         this.from = new pollenium_buttercup_1.Address(struct.from);
         this.gasLimit = new pollenium_buttercup_1.Uint256(struct.gasLimit);
         this.gasPrice = new pollenium_buttercup_1.Uint256(struct.gasPrice);

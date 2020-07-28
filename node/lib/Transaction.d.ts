@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 export interface TransactionStruct {
     hash: Uish;
     blockNumber: Uintable;
-    timestamp: Uintable;
+    timestamp: Uintable | null;
     data: Uish;
     to: Uish | null;
     from: Uish;
@@ -16,7 +16,7 @@ export interface TransactionStruct {
 export declare class Transaction {
     readonly hash: Bytes32;
     readonly blockNumber: Uint256;
-    readonly timestamp: Uint256;
+    readonly timestamp: Uint256 | null;
     readonly data: Uint256;
     readonly to: Address | null;
     readonly from: Address;

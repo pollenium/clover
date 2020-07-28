@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "delay": "^4.3.0",
-    "ethers": "^4.0.44",
+    "ethers": "^4.0.47",
     "pollenium-buttercup": "^19.6.1",
     "pollenium-primrose": "^3.0.0",
     "pollenium-uvaursi": "^8.11.0"
