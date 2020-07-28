@@ -1,5 +1,5 @@
 import { Bytes32, Uint256, Address, Uintable } from 'pollenium-buttercup';
-import { Uish } from 'pollenium-uvaursi';
+import { Uish, Uu } from 'pollenium-uvaursi';
 import { ethers } from 'ethers';
 export interface TransactionStruct {
     hash: Uish;
@@ -17,7 +17,7 @@ export declare class Transaction {
     readonly hash: Bytes32;
     readonly blockNumber: Uint256;
     readonly timestamp: Uint256 | null;
-    readonly data: Uint256;
+    readonly data: Uu;
     readonly to: Address | null;
     readonly from: Address;
     readonly gasLimit: Uint256;

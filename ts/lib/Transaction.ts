@@ -20,7 +20,7 @@ export class Transaction {
   readonly hash: Bytes32
   readonly blockNumber: Uint256
   readonly timestamp: Uint256 | null
-  readonly data: Uint256
+  readonly data: Uu
   readonly to: Address | null
   readonly from: Address
   readonly gasLimit: Uint256
@@ -32,7 +32,7 @@ export class Transaction {
     this.hash = new Bytes32(struct.hash)
     this.blockNumber = new Uint256(struct.blockNumber)
     this.timestamp = struct.timestamp ? new Uint256(struct.timestamp) : null
-    this.data = new Uint256(struct.data)
+    this.data = Uu.wrap(struct.data)
     this.to = struct.to ? new Address(struct.to) : null
     this.from = new Address(struct.from)
     this.gasLimit = new Uint256(struct.gasLimit)
