@@ -77,7 +77,7 @@ describe('CounterContract', function () {
                 case 0: return [4 /*yield*/, counterReader.fetchOwner()];
                 case 1:
                     owner = _a.sent();
-                    expect(owner.u).toStrictEqual(params_1.deployer.address.u);
+                    expect(owner.uu.toHex()).toStrictEqual(params_1.deployer.address.uu.toHex());
                     return [2 /*return*/];
             }
         });

@@ -20,12 +20,12 @@
   "devDependencies": {
     "@types/jest": "^26.0.3",
     "jest": "^26.1.0",
-    "pollenium-gaillardia": "^4.2.0",
+    "pollenium-gaillardia": "^6.0.0",
     "pollenium-ilex": "^9.3.1",
     "solc": "^0.6.10",
     "ts-jest": "^26.1.1",
     "tsc": "^1.20150623.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.7"
   },
   "dependencies": {
     "delay": "^4.3.0",

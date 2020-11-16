@@ -28,7 +28,7 @@ describe('CounterContract', () => {
   })
   test('owner should be deployer', async () => {
     const owner = await counterReader.fetchOwner()
-    expect(owner.u).toStrictEqual(deployer.address.u)
+    expect(owner.uu.toHex()).toStrictEqual(deployer.address.uu.toHex())
   })
   test('count should be 1', async () => {
     const count = await counterReader.fetchCount()

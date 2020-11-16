@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.User = void 0;
 var pollenium_ilex_1 = require("pollenium-ilex");
 var pollenium_buttercup_1 = require("pollenium-buttercup");
 var pollenium_uvaursi_1 = require("pollenium-uvaursi");

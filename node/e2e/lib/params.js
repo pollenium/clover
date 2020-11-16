@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.gaillardia = exports.allUsers = exports.bob = exports.alice = exports.deployer = exports.admin = exports.startWei = exports.blockTimeSeconds = void 0;
 var pollenium_buttercup_1 = require("pollenium-buttercup");
 var User_1 = require("./User");
 var pollenium_gaillardia_1 = require("pollenium-gaillardia");

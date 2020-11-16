@@ -63,6 +63,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
+exports.StateChange = exports.StateChangeTimeoutError = void 0;
 var pollenium_buttercup_1 = require("pollenium-buttercup");
 var pollenium_primrose_1 = require("pollenium-primrose");
 var Transaction_1 = require("./Transaction");
