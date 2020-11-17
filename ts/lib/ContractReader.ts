@@ -55,10 +55,6 @@ export abstract class ContractReader {
     filter: EthersEventFilter,
     range: ContractReaderFilterBlockRange
   }): Promise<GenericEthersLog<EthersLogArgs>[]> {
-    console.log(
-      convertContractReaderFilterBlockFlagToEthersFilterBlockFlag(arg.range.from),
-      convertContractReaderFilterBlockFlagToEthersFilterBlockFlag(arg.range.to)
-    )
     return this.ethersContract.queryFilter(
       arg.filter,
       convertContractReaderFilterBlockFlagToEthersFilterBlockFlag(arg.range.from),

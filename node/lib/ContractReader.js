@@ -57,7 +57,6 @@ var ContractReader = /** @class */ (function () {
         this.ethersContract = new ethers_1.ethers.Contract(new pollenium_buttercup_1.Address(struct.address).uu.toPhex(), struct.abiJson, struct.provider);
     }
     ContractReader.prototype.fetchEthersLogs = function (arg) {
-        console.log(convertContractReaderFilterBlockFlagToEthersFilterBlockFlag(arg.range.from), convertContractReaderFilterBlockFlagToEthersFilterBlockFlag(arg.range.to));
         return this.ethersContract.queryFilter(arg.filter, convertContractReaderFilterBlockFlagToEthersFilterBlockFlag(arg.range.from), convertContractReaderFilterBlockFlagToEthersFilterBlockFlag(arg.range.to));
     };
     ContractReader.prototype.fetchLogs = function (arg) {
