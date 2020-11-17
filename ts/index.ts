@@ -12,7 +12,10 @@ export {
 export {
   ContractReaderStruct,
   ContractReaderChildStruct,
-  ContractReader
+  ContractReader,
+  ContractReaderLog,
+  ContractReaderFilterBlockFlag,
+  ContractReaderFilterBlockRange
 } from './lib/ContractReader'
 
 export {

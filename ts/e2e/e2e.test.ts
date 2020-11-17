@@ -43,4 +43,39 @@ describe('CounterContract', () => {
     const confirmationTimeSeconds = ((confirmedAtMs - broadcastAtMs) / 1000)
     expect(confirmationTimeSeconds).toBeGreaterThan(blockTimeSeconds * (confirmations - 1))
   })
+  test('count should be 3', async () => {
+    const count = await counterReader.fetchCount()
+    expect(count.toNumber()).toBe(3)
+  })
+  test('should increment by 2', async () => {
+    const confirmations = 3
+    const stateChange = await counterWriter.incrementBy(4)
+    const broadcastAtMs = new Date().getTime()
+    await stateChange.awaitConfirmations({ confirmations, timeoutSeconds: 30 })
+    const confirmedAtMs = new Date().getTime()
+    const confirmationTimeSeconds = ((confirmedAtMs - broadcastAtMs) / 1000)
+    expect(confirmationTimeSeconds).toBeGreaterThan(blockTimeSeconds * (confirmations - 1))
+  })
+  test('count should be 3', async () => {
+    const count = await counterReader.fetchCount()
+    expect(count.toNumber()).toBe(7)
+  })
+  test('should have correct CountLogs', async () => {
+    const incrementLogs = await counterReader.fetchIncrementLogs({
+      from: 0, to: 1000
+    })
+      expect(incrementLogs.length).toEqual(2)
+
+    const valuess = incrementLogs.map((incrementLog) => {
+      return incrementLog.values
+    })
+
+    expect(valuess[0].countBefore.toNumber()).toEqual(1)
+    expect(valuess[0].increment.toNumber()).toEqual(2)
+    expect(valuess[0].countAfter.toNumber()).toEqual(3)
+
+    expect(valuess[1].countBefore.toNumber()).toEqual(3)
+    expect(valuess[1].increment.toNumber()).toEqual(4)
+    expect(valuess[1].countAfter.toNumber()).toEqual(7)
+  })
 })

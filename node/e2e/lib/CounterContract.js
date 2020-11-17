@@ -69,7 +69,7 @@ var __1 = require("../../");
 var pollenium_uvaursi_1 = require("pollenium-uvaursi");
 var pollenium_buttercup_1 = require("pollenium-buttercup");
 var ethers_1 = require("ethers");
-var counterContractSol = "\npragma solidity >=0.4.22 <0.7.0;\n// SPDX-License-Identifier: 0BSD\n\ncontract Counter {\n\n  address public owner;\n  uint256 public count;\n\n  constructor(uint256 _count) public {\n    owner = msg.sender;\n    count = _count;\n  }\n\n  function incrementBy(uint256 increment) public {\n    require(msg.sender == owner, 'Must be owner');\n    count = count + increment;\n  }\n}\n";
+var counterContractSol = "\npragma solidity >=0.4.22 <0.7.0;\n// SPDX-License-Identifier: 0BSD\n\ncontract Counter {\n\n  address public owner;\n  uint256 public count;\n\n  event Increment(uint256 countBefore, uint256 increment, uint256 countAfter);\n\n  constructor(uint256 _count) public {\n    owner = msg.sender;\n    count = _count;\n  }\n\n  function incrementBy(uint256 increment) public {\n    require(msg.sender == owner, 'Must be owner');\n    count = count + increment;\n    emit Increment(count - increment, increment, count);\n  }\n}\n";
 var solcInput = {
     language: 'Solidity',
     sources: {
@@ -132,6 +132,23 @@ var CounterReader = /** @class */ (function (_super) {
                         return [4 /*yield*/, ethers_1.ethers.utils.hexlify(countBignumber)];
                     case 2: return [2 /*return*/, new (_a.apply(pollenium_buttercup_1.Uint256, [void 0, _c.apply(_b, [_d.sent()])]))()];
                 }
+            });
+        });
+    };
+    CounterReader.prototype.fetchIncrementLogs = function (range) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.fetchLogs({
+                        filter: this.ethersContract.filters.Increment(),
+                        range: range,
+                        transformEthersLogArgsToLogValues: function (args) {
+                            return {
+                                countBefore: new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(args.countBefore.toHexString())),
+                                increment: new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(args.increment.toHexString())),
+                                countAfter: new pollenium_buttercup_1.Uint256(pollenium_uvaursi_1.Uu.fromHexish(args.countAfter.toHexString()))
+                            };
+                        }
+                    })];
             });
         });
     };

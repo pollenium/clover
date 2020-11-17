@@ -4,7 +4,9 @@ import {
   ContractDeployer,
   ContractDeployerChildStruct,
   ContractReader,
+  ContractReaderLog,
   ContractReaderChildStruct,
+  ContractReaderFilterBlockRange,
   ContractWriter,
   ContractWriterChildStruct,
   StateChange
@@ -12,7 +14,7 @@ import {
 import { Uu } from 'pollenium-uvaursi'
 import { Uintable, Uint256, Address } from 'pollenium-buttercup'
 import Bignumber from 'bignumber.js'
-import { ethers } from 'ethers'
+import { ethers, BigNumber as EthersBignumber } from 'ethers'
 
 const counterContractSol = `
 pragma solidity >=0.4.22 <0.7.0;
@@ -23,6 +25,8 @@ contract Counter {
   address public owner;
   uint256 public count;
 
+  event Increment(uint256 countBefore, uint256 increment, uint256 countAfter);
+
   constructor(uint256 _count) public {
     owner = msg.sender;
     count = _count;
@@ -31,6 +35,7 @@ contract Counter {
   function incrementBy(uint256 increment) public {
     require(msg.sender == owner, 'Must be owner');
     count = count + increment;
+    emit Increment(count - increment, increment, count);
   }
 }
 `
@@ -89,6 +94,28 @@ export class CounterReader extends ContractReader {
     return new Uint256(Uu.fromHexish(
       await ethers.utils.hexlify(countBignumber)
     ))
+  }
+  async fetchIncrementLogs(range: ContractReaderFilterBlockRange): Promise<
+    ContractReaderLog<{countBefore: Uint256, increment: Uint256, countAfter: Uint256}>[]
+  > {
+    return this.fetchLogs<
+      {countBefore: EthersBignumber, increment: EthersBignumber, countAfter: EthersBignumber},
+      {countBefore: Uint256, increment: Uint256, countAfter: Uint256}
+    >({
+      filter: this.ethersContract.filters.Increment(),
+      range,
+      transformEthersLogArgsToLogValues: (args: {
+        countBefore: EthersBignumber,
+        increment: EthersBignumber,
+        countAfter: EthersBignumber
+      }) => {
+        return {
+          countBefore: new Uint256(Uu.fromHexish(args.countBefore.toHexString())),
+          increment: new Uint256(Uu.fromHexish(args.increment.toHexString())),
+          countAfter: new Uint256(Uu.fromHexish(args.countAfter.toHexString()))
+        }
+      }
+    })
   }
 }
 

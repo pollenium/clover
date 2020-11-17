@@ -114,4 +114,71 @@ describe('CounterContract', function () {
             }
         });
     }); });
+    test('count should be 3', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var count;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, counterReader.fetchCount()];
+                case 1:
+                    count = _a.sent();
+                    expect(count.toNumber()).toBe(3);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    test('should increment by 2', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var confirmations, stateChange, broadcastAtMs, confirmedAtMs, confirmationTimeSeconds;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    confirmations = 3;
+                    return [4 /*yield*/, counterWriter.incrementBy(4)];
+                case 1:
+                    stateChange = _a.sent();
+                    broadcastAtMs = new Date().getTime();
+                    return [4 /*yield*/, stateChange.awaitConfirmations({ confirmations: confirmations, timeoutSeconds: 30 })];
+                case 2:
+                    _a.sent();
+                    confirmedAtMs = new Date().getTime();
+                    confirmationTimeSeconds = ((confirmedAtMs - broadcastAtMs) / 1000);
+                    expect(confirmationTimeSeconds).toBeGreaterThan(params_1.blockTimeSeconds * (confirmations - 1));
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    test('count should be 3', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var count;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, counterReader.fetchCount()];
+                case 1:
+                    count = _a.sent();
+                    expect(count.toNumber()).toBe(7);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    test('should have correct CountLogs', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var incrementLogs, valuess;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, counterReader.fetchIncrementLogs({
+                        from: 0, to: 1000
+                    })];
+                case 1:
+                    incrementLogs = _a.sent();
+                    expect(incrementLogs.length).toEqual(2);
+                    valuess = incrementLogs.map(function (incrementLog) {
+                        return incrementLog.values;
+                    });
+                    expect(valuess[0].countBefore.toNumber()).toEqual(1);
+                    expect(valuess[0].increment.toNumber()).toEqual(2);
+                    expect(valuess[0].countAfter.toNumber()).toEqual(3);
+                    expect(valuess[1].countBefore.toNumber()).toEqual(3);
+                    expect(valuess[1].increment.toNumber()).toEqual(4);
+                    expect(valuess[1].countAfter.toNumber()).toEqual(7);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
 });
