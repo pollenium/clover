@@ -68,7 +68,7 @@ var ContractReader = /** @class */ (function () {
                     case 1:
                         ethersLogs = _a.sent();
                         return [2 /*return*/, ethersLogs.map(function (ethersLog) {
-                                return __assign(__assign({}, ethersLog), { eventName: ethersLog.event, blockHash: new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(ethersLog.blockHash)), blockNumber: new pollenium_buttercup_1.Uint256(ethersLog.blockNumber), transactionHash: new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(ethersLog.transactionHash)), address: new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersLog.address)), data: pollenium_uvaursi_1.Uu.fromHexish(ethersLog.address), topics: ethersLog.topics.map(function (topicHexish) {
+                                return __assign(__assign({}, ethersLog), { eventName: ethersLog.event, blockHash: new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(ethersLog.blockHash)), blockIndex: new pollenium_buttercup_1.Uint256(ethersLog.blockNumber), transactionHash: new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(ethersLog.transactionHash)), address: new pollenium_buttercup_1.Address(pollenium_uvaursi_1.Uu.fromHexish(ethersLog.address)), data: pollenium_uvaursi_1.Uu.fromHexish(ethersLog.address), topics: ethersLog.topics.map(function (topicHexish) {
                                         return new pollenium_buttercup_1.Bytes32(pollenium_uvaursi_1.Uu.fromHexish(topicHexish));
                                     }), values: arg.transformEthersLogArgsToLogValues(ethersLog.args) });
                             })];

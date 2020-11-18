@@ -30,7 +30,7 @@ interface GenericEthersLog<EthersLogArgs> extends Omit<EthersLog, 'args'> {
 export interface ContractReaderLog<Values> {
   eventName?: string,
   eventSignature?: string,
-  blockNumber: Uint256,
+  blockIndex: Uint256,
   blockHash: Bytes32,
   transactionIndex: number,
   address: Address,
@@ -73,7 +73,7 @@ export abstract class ContractReader {
         ...ethersLog,
         eventName: ethersLog.event,
         blockHash: new Bytes32(Uu.fromHexish(ethersLog.blockHash)),
-        blockNumber: new Uint256(ethersLog.blockNumber),
+        blockIndex: new Uint256(ethersLog.blockNumber),
         transactionHash: new Bytes32(Uu.fromHexish(ethersLog.transactionHash)),
         address: new Address(Uu.fromHexish(ethersLog.address)),
         data: Uu.fromHexish(ethersLog.address),

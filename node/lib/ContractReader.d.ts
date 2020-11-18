@@ -24,7 +24,7 @@ interface GenericEthersLog<EthersLogArgs> extends Omit<EthersLog, 'args'> {
 export interface ContractReaderLog<Values> {
     eventName?: string;
     eventSignature?: string;
-    blockNumber: Uint256;
+    blockIndex: Uint256;
     blockHash: Bytes32;
     transactionIndex: number;
     address: Address;
